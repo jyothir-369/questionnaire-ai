@@ -22,10 +22,8 @@ A web-based AI tool to **automatically answer structured questionnaires** using 
   - HuggingFace embeddings for vector store (free & local).
 
 ---
-
+```
 ## 📂 Project Structure
-
-
 questionnaire-ai/
 │
 ├── backend/
@@ -42,130 +40,112 @@ questionnaire-ai/
 └── docs/
 ├── sample_questionnaire.pdf
 ├── sample_questionnaire.xlsx
-├── reference_docs/
-│ ├── security_policy.pdf
-│ ├── compliance_overview.pdf
-│ ├── infrastructure_overview.pdf
-│ ├── access_control_policy.pdf
-│ └── incident_response_plan.pdf
-
+└── reference_docs/
+├── security_policy.pdf
+├── compliance_overview.pdf
+├── infrastructure_overview.pdf
+├── access_control_policy.pdf
+└── incident_response_plan.pdf
+```
 
 ---
 
-## ⚡ Setup Instructions
+## ⚡ Setup & Deployment Instructions
 
-1. **Clone the repository:**
-
+### 1️⃣ Clone the Repository
 ```bash
 git clone https://github.com/jyothir-369/questionnaire-ai.git
 cd questionnaire-ai
-
-Install Python dependencies:
-
+2️⃣ Install Python Dependencies
 pip install -r backend/requirements.txt
 pip install streamlit sentence-transformers PyMuPDF faiss-cpu
 pip install langchain langchain-community
-
-Optional for Groq:
-
+3️⃣ Optional: Install Groq (Free LLM)
 pip install langchain-groq
-
-Set API key (if using Groq):
-
 $env:GROQ_API_KEY="gsk_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-
-Or, for OpenAI:
-
+4️⃣ Optional: Use OpenAI LLM
 $env:OPENAI_API_KEY="sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-
-Run the Streamlit app:
-
+5️⃣ Run the Streamlit App
 streamlit run frontend/streamlit_app.py
 
 Open your browser at http://localhost:8501/
- and log in with the admin credentials:
+ and log in:
 
 Username: admin
 
-Password: (hashed in config.yaml)
+Password: test123 🔑
 
-🖥 Deployment Instructions
-
-You can deploy this Streamlit app on Streamlit Cloud, Render, or any VPS/Heroku.
-
+🖥 Deployment Options
 Option 1: Streamlit Community Cloud (Recommended)
 
 Push your repository to GitHub.
 
-Go to https://share.streamlit.io/
-.
+Go to Streamlit Cloud
 
-Click “New App” → Connect GitHub repository.
+Click New App → Connect GitHub repository
 
-Select branch and file: frontend/streamlit_app.py.
+Select branch and file: frontend/streamlit_app.py
 
-Add secrets (API keys) in Settings → Secrets.
+Add API keys in Settings → Secrets
 
-Deploy and get live URL.
+Deploy and get your live URL 🌐
 
 Option 2: Render
 
 Create a new Web Service on Render
-.
 
-Connect your GitHub repository.
+Connect your GitHub repository
 
-Set start command:
+Set Start Command:
 
 streamlit run frontend/streamlit_app.py --server.port $PORT
 
-Add environment variables for API keys.
+Add environment variables for API keys
 
-Deploy and access via provided URL.
+Deploy and access via the provided URL
 
 Option 3: Local / VPS
 
-Install dependencies on server.
+Install dependencies on the server
 
 Run:
 
 streamlit run frontend/streamlit_app.py --server.port 8501 --server.address 0.0.0.0
 
-Access via http://<server-ip>:8501/.
+Access via: http://<server-ip>:8501/
 
 🧠 How It Works
+1️⃣ Upload Questionnaire + Reference Docs
 
-Upload Questionnaire + Reference Docs
+PDF questions are parsed automatically
 
-PDF questions are parsed automatically.
+Reference docs converted to text and split into chunks
 
-Reference docs are converted to text and split into chunks.
+2️⃣ Vector Store Creation
 
-Vector Store Creation
+Embeddings are created using HuggingFace Embeddings
 
-Embeddings are created for each chunk using HuggingFace Embeddings.
+Stored in FAISS for fast similarity search
 
-Stored in FAISS for efficient similarity search.
+3️⃣ Answer Generation (RAG)
 
-Answer Generation (RAG)
+Similar chunks retrieved from FAISS
 
-Similar chunks are retrieved from FAISS.
+Passed to LLM (Groq / OpenAI) with context
 
-Passed to the LLM (Groq / OpenAI) with context.
+Citations extracted from retrieved documents
 
-Citations are extracted from retrieved documents.
+If no info → returns “Not found in references.”
 
-If no relevant info → returns “Not found in references.”
+4️⃣ Review & Edit
 
-Review & Edit
+Answers shown in Review tab
 
-Answers are shown in the Review tab.
+Users can edit before export
 
-Users can edit before export.
+5️⃣ Export
 
-Export
-
-Answers saved as .docx with citations.
+Answers saved as .docx with citations
 
 ✅ Assignment Compliance
 Requirement	Status
@@ -178,19 +158,19 @@ Citations included in output	✅ Done
 Export Word document	✅ Done
 Free / optional API provider (Groq / HuggingFace)	✅ Done
 
-Only remaining issue is OpenAI quota if using OpenAI embeddings/LLM.
+⚠️ Only remaining issue is OpenAI quota if using OpenAI embeddings/LLM.
 
 🔧 Notes
 
-File limits: 200MB per file for PDF/TXT/MD.
+File limits: 200MB per file (PDF/TXT/MD)
 
-Detected questions: Automatically parsed based on numbering or question marks.
+Detected questions: Based on numbering or question marks
 
-Embeddings: Uses sentence-transformers/all-MiniLM-L6-v2.
+Embeddings: sentence-transformers/all-MiniLM-L6-v2
 
-Vector store: FAISS, local and fast.
+Vector store: FAISS, local and fast
 
-Local environment: No cloud deployment needed unless you want a live demo.
+Local environment: No cloud deployment needed unless you want a live demo
 
 📦 Dependencies
 
@@ -223,14 +203,26 @@ Streamlit
 👤 Author
 
 Jyothir Raghavalu Bhogi
-
-Email: your.email@example.com
+Email: jyothirraghavalu369@gmail.com
 
 GitHub: jyothir-369
+
+🚀 Quick Start for Evaluators
+
+Run and test the app locally in 3 commands:
+
+git clone https://github.com/jyothir-369/questionnaire-ai.git
+cd questionnaire-ai
+streamlit run frontend/streamlit_app.py
+
+Open your browser at http://localhost:8501/
+ and log in with admin credentials.
+Username: admin | Password: test123
 
 
 ---
 
-If you want, I can also **add a “Quick Start for Evaluators” section** that lets someone **run and test the app in 3 commands locally**, perfect for assignment submission.  
+If you want, I can **also add a “Screenshots” section with the Upload → Review → Export tabs** so the README looks really polished on GitHub.  
 
+Do you want me to do that next?
 Do you want me to add that?
