@@ -1,0 +1,3 @@
+Our company enforces MFA for all admin accounts.
+Data at rest is encrypted using AES-256.
+We are SOC 2 Type 2 certified since 2024.

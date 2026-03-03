@@ -1,0 +1,11 @@
+﻿credentials:
+  usernames:
+    admin:
+      email: admin@gmail.com
+      name: Admin
+      password: test123
+
+cookie:
+  name: questionnaire_cookie
+  key: supersecretkey
+  expiry_days: 1
